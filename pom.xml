@@ -4,9 +4,9 @@
   <artifactId>hdpf</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <!-- <modules>
+  <modules>
   	<module>logging</module>
-  </modules> -->
+  </modules>
   <properties>
 		<!-- Build Properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -254,12 +254,12 @@
 				<artifactId>handy-uri-templates</artifactId>
 				<version>${handy_uritemplate.version}</version>
 			</dependency>
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.scala-lang</groupId>
 				<artifactId>scala-library</artifactId>
 				<version>${scalatools.version}</version>
 				<scope>provided</scope>
-			</dependency>
+			</dependency> -->
 			<dependency>
 				<groupId>org.apache.apark</groupId>
 				<artifactId>spark-streaming-kafka_${scalatools.version}</artifactId>
