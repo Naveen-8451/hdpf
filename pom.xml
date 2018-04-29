@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>logging</module>
+  	<module>hdpf-utils</module>
   </modules>
   <properties>
 		<!-- Build Properties -->

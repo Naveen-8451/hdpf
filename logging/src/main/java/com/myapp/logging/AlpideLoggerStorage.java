@@ -26,7 +26,7 @@ public class AlpideLoggerStorage extends PigStorage{
 				LogMessage message = new LogMessage(HADOOPLOGTYPE.getLogLevelFromStringValue (aMessageType, HADOOPLOGTYPE. INFO),
 					aSubStage, aSourceName, aTablenameorFileName, aMessage);
 					if (! processedMessages.contains (message)) {
-					logger.log (HADOOPLOGTYPE.getlogLevelFromStringValue (aMessageType, HADOOPLOGTYPE.INFO),aSubStage, aSourceName, aTablenameorFileName, aMessage);
+					logger.log (HADOOPLOGTYPE.getLogLevelFromStringValue(aMessageType, HADOOPLOGTYPE.INFO),aSubStage, aSourceName, aTablenameorFileName, aMessage);
 					processedMessages.add(message);
 					}
 			}
