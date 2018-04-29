@@ -1,13 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
-  <artifactId>logging</artifactId>
   <parent>
     <groupId>com.myapp.datacontrols</groupId>
     <artifactId>hdpf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
+  <artifactId>logging</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  
+  <properties>
+        <some.prop.name>${parent.artifactId}</some.prop.name>     <!-- parent-id -->
+        <some.other.prop>${project.artifactId}</some.other.prop>  <!-- child-id -->
+    </properties>
   <dependencies>
   	<dependency>
   		<groupId>com.fasterxml.jackson.core</groupId>
@@ -31,13 +36,14 @@
    		<groupId>org.apache.hadoop</groupId>
    		<artifactId>hadoop-common</artifactId>
    	</dependency>
-   	<!-- <dependency>
+   	 <dependency>
    		<groupId>org.apache.commons</groupId>
    		<artifactId>commons-lang3</artifactId>
-   		<version></version>
+   		<version>${apachecommons.version}</version>
+   		
    	
    	</dependency>
-   	 --><dependency>
+   	<dependency>
    		<groupId>log4j</groupId>
    		<artifactId>log4j</artifactId>
    	</dependency>
@@ -55,13 +61,12 @@
    	<!-- <dependency>
    		<groupId>org.apache.pig</groupId>
    		<artifactId>pig</artifactId>
-   		<version>${pig.version}</version>
    		<type>pom</type>
    	</dependency> -->
    	<dependency>
    		<groupId>org.apache.pig</groupId>
    		<artifactId>piggybank</artifactId>
-   		<version>${piggybank.version}</version>
+   		<version>${piggybank.version}</version><!--$NO-MVN-MAN-VER$-->
    	</dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -110,7 +115,7 @@
   			</executions>
   		</plugin>
   		<plugin>
-  			<artifactId>mavne-resources-plugin</artifactId>
+  			<artifactId>maven-resources-plugin</artifactId>
   			<version>2.7</version>
   			<dependencies>
   				<dependency>
@@ -118,7 +123,7 @@
   					<artifactId>maven-filtering</artifactId>
   					<version>1.3</version>
   				</dependency>
-  			</dependencies>
+  			</dependencies> 
   			<executions>
   				<execution>
   					<id>copy-resources-readMe</id>
@@ -183,7 +188,7 @@
   		</plugin>
   		<plugin>
   			<groupId>com.coderplus.maven.plugins</groupId>
-  			<artifactId>copy-renmae-plugin</artifactId>
+  			<artifactId>copy-rename-maven-plugin</artifactId>
   			<version>1.0</version>
   			<executions>
   				<execution>
