@@ -1,0 +1,309 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.myapp.datacontrols</groupId>
+  <artifactId>hdpf</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <!-- <modules>
+  	<module>logging</module>
+  </modules> -->
+  <properties>
+		<!-- Build Properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<jdk.version>1.8</jdk.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<scala.version>2.10.6</scala.version>
+		<!-- 3rd party libraries versions -->
+		<spark.version>1.6.0</spark.version>
+		<hadoop-version>2.6.0</hadoop-version>
+		<scalatools.version>2.10</scalatools.version>
+		<spark-testing-base.version>0.6.0</spark-testing-base.version>
+		<scalatest.version>3.0.1</scalatest.version>
+
+		<spark_csv.version>1.4.0</spark_csv.version>
+		<spark_avro.versions>2.0.1</spark_avro.versions>
+		<avro_mapred.version>1.7.6</avro_mapred.version>
+		<kafka.version>0.9.0.1</kafka.version>
+		<pig.version>o.11.0-adh4.3.1</pig.version>
+		<piggybank.version>0.12.0</piggybank.version>
+		<poi.version>3.9</poi.version>
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j.version>1.7.10</slf4j.version>
+		<scalalog4j.version>2.8.2</scalalog4j.version>
+		<junit.version>4.12</junit.version>
+		<jmockit.version>1.8</jmockit.version>
+		<mockito.version>2.11.0</mockito.version>
+		<apachecommons.version>3.3.2</apachecommons.version>
+		<commons_io.version>2.4</commons_io.version>
+		<commons_math3.version>3.6</commons_math3.version>
+		<commons_jex13.version> 3.0</commons_jex13.version>
+		<jackson-databind.version>2.4.4</jackson-databind.version>
+		<hsqldb.version>2.3.1</hsqldb.version>
+		<everit_json_schema.version>1.6.0</everit_json_schema.version>
+		<handy_uritemplate.version>2.1.6</handy_uritemplate.version>
+		<mysql_connector.version>5.1.6</mysql_connector.version>
+		<javax_mail.version>i1.5.5</javax_mail.version>
+		<h2.version>1.4.193</h2.version>
+		<scalaj_http.version>2.3.0</scalaj_http.version>
+
+		<!-- EZFlow modules versions -->
+		<utils.version>1.7.O</utils.version>
+		<hadooplogger.version>2.0.0</hadooplogger.version>
+		<cdc.version>1.2.0</cdc.version>
+		<dataquality.version>3.2.0</dataquality.version>
+		<datamerge.version>1.6.1</datamerge.version>
+		<keygenerator.version>1.2.0</keygenerator.version>
+		<dataintegrity.version>1.4. 1</dataintegrity.version>
+		<configgen.version>1.4.3</configgen.version>
+		<datasourcing.version>1.5.3</datasourcing.version>
+		<datastandardization.version>1.5.1</datastandardization.version>
+		<flowbot.version>2.2.0</flowbot.version>
+
+		<!-- Component level unit tests -->
+		<globalSkipTests>true</globalSkipTests>
+		<flowbotSkipTest>${globalSkipTests}</flowbotSkipTest>
+		<dqSkipTest>${globalSkipTests}</dqSkipTest>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>common-lang3</artifactId>
+				<version>${apachecommons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jakson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.sl4j</groupId>
+				<artifactId>sl4j-log4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${jmockit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest_2.10</artifactId>
+				<version>${scalatest.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-core_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-streaming-kafka_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-streaming_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-sql_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql connector.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>javax.mail</artifactId>
+				<version>${javax_mail.version}</version>
+				<scope>>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId> com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka_${scalatools.version}</artifactId>
+				<version>${kafka.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka-clients</artifactId>
+				<version>${kafka.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope> test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.scalaj</groupId>
+				<artifactId>scalaj-http_${scalatools.version}</artifactId>
+				<version>$scalaj http.version)</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-mapred</artifactId>
+				<version>$avro mapred.version)</version>
+				<classifier>hadoop2</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.pig</groupId>
+				<artifactId>pig</artifactId>
+				<version>ipig.version]</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.pig</groupId>
+				<artifactId>piggybank</artifactId>
+				<version>$ipiggybank.version)</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-jex13</artifactId>
+				<version>${commons_jex13.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.spar</groupId>
+				<artifactId>spark-hive_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-common</artifactId>
+				<version>${hadoop-version}</version>
+				<scope>provided</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>jdk.tools</groupId>
+						<artifactId>jdk.tools</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+					<groupId>com.holdenkarau</groupId>
+					<artifactId>spark-testing-base_2.11</artifactId>
+					<version>${spark-testing-base.version}</version>
+					<scope>test</scope>
+			</dependency>
+					<dependency>
+					<groupId>com.databricks</groupId>
+					<artifactId>spark-csv_2.10</artifactId>
+					<version>${spark_csv.version}</version>
+					<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.databricka</groupId>
+				<artifactId>spark-avro_2.10</artifactId>
+				<version>${spark_avro.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.baml.sei.sei_hdpf</groupId>
+				<artifactId>everit.json.achema</artifactId>
+				<version>${everit_json_schema.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.damnhandy</groupId>
+				<artifactId>handy-uri-templates</artifactId>
+				<version>${handy_uritemplate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-library</artifactId>
+				<version>${scalatools.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.apark</groupId>
+				<artifactId>spark-streaming-kafka_${scalatools.version}</artifactId>
+				<version>${spark.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId> org.apache.apark</groupId>
+				<artifactId>spark-streaming_${scalatools.version}</artifactId>
+				<version>${scala.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+<build>
+	<plugins>
+		<plugin>
+			<groupId>com.coderplus.maven.plugins</groupId>
+			<artifactId>copy-rename-maven-plugin</artifactId>
+			<version>1.0</version>
+			<executions>
+				<execution>
+					<id>copy-file</id>
+					<phase>generate-sources</phase>
+					<goals>
+						<goal>copy</goal>
+					</goals>
+					<configuration>
+						<sourceFile>	pom.xml</sourceFile>
+						<destinationFile>target/extra-resources/${project.version}</destinationFile>
+					
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	
+</build>
+
+
+
+
+
+
+	
+</project>
